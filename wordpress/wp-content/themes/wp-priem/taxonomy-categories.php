@@ -6,6 +6,9 @@
 
 <?php easy_breadcrumbs(); ?>
 <br>
+
+
+
 <!-- Тело страницы -->
 <table>
   <tbody>
@@ -15,28 +18,116 @@
       <th width="130" scope="col">Цена, руб./кг<br>100 кг – 1 тонна</th>
       <th width="130" scope="col">Цена, руб./кг<br>от 1 тонны</th>
     </tr>
-    <tr>
-      <td><font color="#BD0926">Алюминий</font></td>
-      <td id="117">79</td>
-      <td id="118">83</td>
-      <td id="119">84</td>
-    </tr>
-    <?php query_posts(array( 'post_type' => 'product','showposts' => 15, 'order' => 'ASC', 'tax_query' => array(
-        array(
-        'taxonomy' => 'alyuminij',
-        'field' => 'term_id',
-        'terms' => 9)
-    )) ); ?>
 
-    <?php while (have_posts()) : the_post(); ?>
+
+
+<?php
+
+$queried_object = get_queried_object();
+$term_id = $queried_object->term_id;
+
+$term = get_term( $term_id); ?>
+
+
+
+
+
+<?php if( get_field('first_row') ) { ?>
+      <?php
+      // check if the repeater field has rows of data
+      if( have_rows('first_row_container', $term ) ):
+        // loop through the rows of data
+          while ( have_rows('first_row_container', $term ) ) : the_row();
+              // display a sub field value
+
+?>
+
     <tr>
-      <td><a href="/alyuminij-elektrotehnicheskij.html"><?php the_title(); ?></a></td>
+      <td><?php the_sub_field('name'); ?></td>
+      <td id="122"><?php the_sub_field('price_by_kg'); ?></td>
+      <td id="123"><?php the_sub_field('price_by_t'); ?></td>
+      <td id="124"><?php the_sub_field('price_more_t'); ?></td>
+    </tr>
+
+<?php
+
+          endwhile;
+      endif;
+      ?>
+<?php } ?>
+
+
+
+
+
+<?php if( get_field('repeater_price') ) { ?>
+
+
+
+<?php
+// check if the repeater field has rows of data
+if( have_rows('productsby', $term ) ):
+  // loop through the rows of data
+    while ( have_rows('productsby', $term ) ) : the_row();
+        // display a sub field value
+        the_sub_field('name');
+    endwhile;
+endif;
+?>
+
+
+
+
+
+
+
+
+<? } else { ?>
+
+
+
+
+
+<?php
+
+
+  $args = array(
+  'post_type' => 'product',
+  'tax_query' => array(
+      array(
+      'taxonomy' => 'categories',
+      'field' => 'id',
+      'terms' => $term_id
+       )
+    )
+  );
+?>
+
+<?php query_posts(  $args  ); ?>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+    <tr>
+      <td><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>
       <td id="122"><?php the_field('price_by_rg'); ?></td>
       <td id="123"><?php the_field('price_by_tonna'); ?></td>
       <td id="124"><?php the_field('price_more_tonna'); ?></td>
     </tr>
-    <?php endwhile;?>
-    <?php wp_reset_query(); ?>
+<?php endwhile; endif; ?>
+<?php wp_reset_query(); ?>
+
+
+
+
+
+
+  <?  }
+?>
+
+
+
+
+
+
+
   </tbody>
 </table>
 
