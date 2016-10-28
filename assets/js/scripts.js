@@ -25,6 +25,6 @@ if (typeof jQuery === 'undefined') {
 jQuery(document).ready(function($) {
   $('.call-to-action').on('click', function(event){
 event.preventDefault();
-alert('test')
+$('.popupCons1').show(500);
   })
 });
