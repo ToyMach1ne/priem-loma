@@ -20,10 +20,10 @@
       <th width="110" scope="col">Цена, руб./кг<br>100 кг – 1 тонна</th>
       <th width="110" scope="col">Цена, руб./кг<br>от 1 тонны</th>
     </tr>
-<?php if( have_rows('first_row') ): while ( have_rows('first_row') ) : the_row();
+    <?php if( have_rows('first_row') ): while ( have_rows('first_row') ) : the_row();
     // vars
     $image = get_sub_field('steel_img');?>
-    <tr>
+    <tr class="first-row">
       <td class="tbl-name" rowspan="7"><p><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" /></p>ЖЕЛЕЗО</td>
       <td class="td-left"><?php the_sub_field('first_name'); ?></td>
       <td id="247"><?php the_sub_field('1st_price'); ?></td>
@@ -32,8 +32,9 @@
     </tr>
     <?php endwhile; ?>
     <?php endif; ?>
+
     <?php if( have_rows('black') ): while ( have_rows('black') ) : the_row(); ?>
-    <tr>
+    <tr class="second-row">
       <td><?php the_sub_field('name'); ?></td>
       <td id="252"><?php the_sub_field('1kg'); ?></td>
       <td id="253"><?php the_sub_field('1t'); ?></td>
@@ -302,17 +303,18 @@
       <th width="110" scope="col">Цена, руб./кг<br>от 1 тонны</th>
     </tr>
     <tr>
-      <td class="tbl-name" rowspan="2"><p><img alt="" src="/images/oborud.png"></p>ОБОРУДОВАНИЕ</td>
-      <td class="td-left">Старые б/у станки</td>
-      <td>договорная</td>
-      <td>договорная</td>
-      <td>договорная</td>
+      <td class="tbl-name" rowspan="2"><p><?php $image = get_field('equipmentimg'); if( !empty($image) ): ?>
+      <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" /> <?php endif; ?></p>ОБОРУДОВАНИЕ</td>
+      <td class="td-left"><?php the_field('eqname'); ?></td>
+      <td><?php the_field('price1'); ?></td>
+      <td><?php the_field('price2'); ?></td>
+      <td><?php the_field('price3'); ?></td>
     </tr>
     <tr class="tr-bottom">
-      <td>Старые б/у двигатели</td>
-      <td id="347">13</td>
-      <td id="348">17</td>
-      <td id="349">21</td>
+      <td><?php the_field('name2'); ?></td>
+      <td id="347"><?php the_field('priceengine'); ?></td>
+      <td id="348"><?php the_field('2ndpriceengine'); ?></td>
+      <td id="349"><?php the_field('3rdpriceengine'); ?></td>
     </tr>
   </tbody>
 </table>

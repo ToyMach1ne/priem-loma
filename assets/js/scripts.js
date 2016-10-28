@@ -21,3 +21,10 @@ if (typeof jQuery === 'undefined') {
   console.log('jQuery has loaded');
 }
 // Place any jQuery/helper plugins in here.
+
+jQuery(document).ready(function($) {
+  $('.call-to-action').on('click', function(event){
+event.preventDefault();
+alert('test')
+  })
+});

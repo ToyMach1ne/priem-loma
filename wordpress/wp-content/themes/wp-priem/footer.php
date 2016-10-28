@@ -97,22 +97,6 @@
         <!-- /alert -->
     </footer>
 
-<!-- Scripts-->
-
-    <script async="" src="js/module.js"></script>
-    <script type="text/javascript" language="javascript" src="js/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" language="javascript" src="js/script.js"></script>
-    <script src="js/fancy.js"></script>
-    <script type="text/javascript" language="javascript" src="js/forms.js"></script>
-    <script src="js/ajax.js"></script>
-
-
-
-
-
-
-<!-- End OF Scripts -->
-
 
 <?php wp_footer(); ?>
 
