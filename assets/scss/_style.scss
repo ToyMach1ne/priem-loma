@@ -781,6 +781,7 @@ footer {
   top: 50%;
   margin: 0 0 0 -230px;
   border-radius: 5px;
+  margin-top: -101.5px;
   .close {
     width: 22px;
     height: 22px;
@@ -993,7 +994,7 @@ div {
             color: #c1002a;
           }
         }
-        &.menu-item-45 {
+        &.call-to-action {
           background: url(../img/tab1.png) 50% 15px no-repeat;
         }
         &.menu-item-44 {
@@ -1560,4 +1561,12 @@ table.no-hover tr:hover td {
       }
 .fp-pad {
   padding-bottom: 150px;
+}
+.name_field {
+  max-height: 20px ;
+    min-height: 0 ;
+    width: 593px ;
+}
+.input_message {
+  max-height: 558px !important;
 }
